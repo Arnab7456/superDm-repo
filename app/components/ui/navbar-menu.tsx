@@ -27,33 +27,35 @@ export const MenuItem = ({
   );
 };
 
-export const Menu = () => {
-  const [active, setActive] = useState<string | null>(null);
-
-  return (
-    <nav
-      onMouseLeave={() => setActive(null)}
-      className="relative rounded-full border border-transparent dark:bg-blue-300 dark:border-white/[0.2] flex justify-center space-x-10 px-8 py-6"
-    >
-      <div className="flex items-center space-x-4 gap-14" >
-        <Link href="/" className="flex items-center">
-         
-          <Image
-            src="/super.jpg"
-            alt="logo"
-            width={50}
-            height={50}
-            className="rounded-lg mr-2" // Reduced margin to mr-2 for closer spacing
-          />
-          <span className="text-2xl font-bold  text-blue-500 mr-12">
-            Superdm
-          </span>
-        </Link>
-        <div className="flex items-center gap-8">
-        <MenuItem setActive={setActive} active={active} item="Terms" />
-        <MenuItem setActive={setActive} active={active} item="Privacy" />
+export const Menu = ({
+    setActive,
+    children,
+  }: {
+    setActive: React.Dispatch<React.SetStateAction<string | null>>;
+    children: React.ReactNode;
+  }) => {
+    return (
+      <nav
+        onMouseLeave={() => setActive(null)}
+        className="relative rounded-full border border-transparent dark:bg-blue-300 dark:border-white/[0.2] flex justify-center space-x-10 px-8 py-6"
+      >
+        <div className="flex items-center space-x-4 gap-14">
+          <Link href="/" className="flex items-center">
+            <Image
+              src="/super.jpg"
+              alt="logo"
+              width={50}
+              height={50}
+              className="rounded-lg mr-2"
+            />
+            <span className="text-2xl font-bold text-blue-500 mr-12">
+              Superdm
+            </span>
+          </Link>
+          <div className="flex items-center gap-8">
+            {children}
+          </div>
         </div>
-      </div>
-    </nav>
-  );
-};
+      </nav>
+    );
+  };
