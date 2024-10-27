@@ -1,5 +1,5 @@
 "use client";
-import React, { useId, useMemo } from "react";
+import React from "react";
 import { useEffect, useState } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import type { Container, SingleOrMultiple } from "@tsparticles/engine";
@@ -44,18 +44,17 @@ export const SparklesCore = (props: ParticlesProps) => {
       controls.start({
         opacity: 1,
         transition: {
-          duration: 1,
+          duration: 0.4,
         },
       });
     }
   };
 
-  const generatedId = useId();
   return (
     <motion.div animate={controls} className={cn("opacity-0", className)}>
       {init && (
         <Particles
-          id={id || generatedId}
+          id={id || "tsparticles"}
           className={cn("h-full w-full")}
           particlesLoaded={particlesLoaded}
           options={{
